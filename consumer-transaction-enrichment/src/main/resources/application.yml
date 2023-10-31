@@ -1,0 +1,22 @@
+server:
+  port : 8081
+spring:
+  cloud:
+    function:
+      definition: enrichTransactionDetails;
+    stream:
+      bindings:
+        enrichTransactionDetails-in-0:
+          destination: transaction-init-topic
+        enrichTransactionDetails-out-0:
+          destination: transaction-detail-enriched-topic
+          producer:
+            useNativeEncoding: true
+
+      kafka:
+        binder:
+          brokers: localhost:9092
+          configuration:
+            commit.interval.ms: 2000 # to allow the stream to send the message as soon as possible and not wait
+
+

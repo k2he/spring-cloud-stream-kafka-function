@@ -1,0 +1,9 @@
+package com.cloudstreamkafkafunctional.programming.consumertransactionenrichment.service;
+
+import com.cloudstreamkafkafunctional.programming.sharedLib.model.TransactionDetailsInfo;
+import com.cloudstreamkafkafunctional.programming.sharedLib.model.TransactionReportData;
+
+public interface TransactionDetailService {
+
+  TransactionDetailsInfo enrichTranscationDetails(TransactionReportData transactionReportData);
+}

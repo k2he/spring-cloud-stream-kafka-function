@@ -1,0 +1,21 @@
+server:
+  port : 8082
+spring:
+  cloud:
+    function:
+      definition: enrichAccount;
+    stream:
+      bindings:
+        enrichAccount-in-0:
+          destination: transaction-init-topic
+        enrichAccount-out-0:
+          destination: account-enriched-topic
+          producer:
+            useNativeEncoding: true
+
+      kafka:
+        binder:
+          brokers: localhost:9092
+          configuration:
+            commit.interval.ms: 2000 # to allow the stream to send the message as soon as possible and not wait
+

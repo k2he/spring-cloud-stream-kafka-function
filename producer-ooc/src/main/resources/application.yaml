@@ -1,0 +1,23 @@
+server:
+  port : 8080
+spring:
+  application:
+    name: producer-orchestrator
+
+  cloud:
+    function:
+      definition: producer
+    stream:
+      bindings:
+        producer-out-0:
+          destination: transaction-init-topic
+
+      kafka:
+        binder:
+          brokers: localhost:9092
+
+        bindings:
+          producer-out-0:
+            producer:
+              configuration:
+                key.serializer: org.apache.kafka.common.serialization.StringSerializer

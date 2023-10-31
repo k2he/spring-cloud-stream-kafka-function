@@ -1,0 +1,23 @@
+server:
+  port : 8085
+
+spring:
+  cloud:
+    function:
+      definition: transactionJoiner;
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+      bindings:
+        input:
+          contentType: application/json
+        transactionJoiner-in-0:
+          destination: transaction-detail-enriched-topic
+        transactionJoiner-in-1:
+          destination: account-enriched-topic
+        transactionJoiner-out-0:
+          destination: transaction-joined-topic
+
+        joinedEvenListener-in-0:
+          destination: joined-out-topic
