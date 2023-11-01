@@ -1,5 +1,6 @@
 package com.cloudstreamkafkafunctional.programming.sharedLib.model;
 
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,5 +17,5 @@ public class AccountInfo {
   private String lastName;
   private String middleName;
   private AddressInfo address;
-
+  private LocalDateTime lastUpdated;
 }

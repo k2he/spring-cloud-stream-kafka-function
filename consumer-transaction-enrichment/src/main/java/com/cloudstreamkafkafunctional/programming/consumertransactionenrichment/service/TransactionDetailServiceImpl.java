@@ -2,6 +2,7 @@ package com.cloudstreamkafkafunctional.programming.consumertransactionenrichment
 
 import com.cloudstreamkafkafunctional.programming.sharedLib.model.TransactionDetailsInfo;
 import com.cloudstreamkafkafunctional.programming.sharedLib.model.TransactionReportData;
+import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
@@ -26,6 +27,7 @@ public class TransactionDetailServiceImpl implements TransactionDetailService {
         .amount(amount)
         .currency("CAD")
         .rails(new Random().nextBoolean() ? "Wire": "Visa")
+        .lastUpdated(LocalDateTime.now())
         .build();
   }
 }

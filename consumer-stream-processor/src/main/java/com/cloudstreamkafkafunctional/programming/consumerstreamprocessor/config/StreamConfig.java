@@ -3,6 +3,7 @@ package com.cloudstreamkafkafunctional.programming.consumerstreamprocessor.confi
 import com.cloudstreamkafkafunctional.programming.sharedLib.model.TransactionDetailsInfo;
 import com.cloudstreamkafkafunctional.programming.sharedLib.model.AccountInfo;
 import com.cloudstreamkafkafunctional.programming.sharedLib.model.TransactionReportData;
+import java.time.LocalDateTime;
 import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -94,6 +95,7 @@ public class StreamConfig {
   private ValueJoiner<TransactionReportData, TransactionDetailsInfo, TransactionReportData> enrichTransactionReportDataValueJoiner() {
     return (reportData, transactionDetail) -> {
       reportData.setTransactionDetails(transactionDetail);
+      reportData.setLastUpdated(LocalDateTime.now());
       return reportData;
     };
   }
@@ -101,6 +103,7 @@ public class StreamConfig {
     private ValueJoiner<TransactionReportData, AccountInfo, TransactionReportData> enrichAccountInfoDataValueJoiner() {
       return (reportData, accountData) -> {
         reportData.setRecipientAccount(accountData);
+        reportData.setLastUpdated(LocalDateTime.now());
         return reportData;
       };
     }

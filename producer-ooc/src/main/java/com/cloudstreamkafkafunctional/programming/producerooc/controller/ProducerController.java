@@ -40,6 +40,7 @@ public class ProducerController {
         .tracebilityId(UUID.randomUUID().toString())
         .transcationId(transaction.getTranscationId())
         .transferType(transaction.getTransactionType())
+        .createdOn(LocalDateTime.now())
         .build();
 
     streamBridge.send("producer-out-0", reportData);
@@ -56,6 +57,7 @@ public class ProducerController {
             .tracebilityId(UUID.randomUUID().toString())
             .transcationId(String.valueOf(i))
             .transferType(i%3 == 0 ? TransferType.SWIFT: TransferType.NON_SWIFT)
+            .createdOn(LocalDateTime.now())
             .build())
         .collect(toList());
 

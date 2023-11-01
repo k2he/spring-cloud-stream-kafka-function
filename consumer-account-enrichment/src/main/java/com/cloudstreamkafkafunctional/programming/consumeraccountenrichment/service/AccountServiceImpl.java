@@ -3,6 +3,7 @@ package com.cloudstreamkafkafunctional.programming.consumeraccountenrichment.ser
 import com.cloudstreamkafkafunctional.programming.sharedLib.model.AccountInfo;
 import com.cloudstreamkafkafunctional.programming.sharedLib.model.AddressInfo;
 import com.cloudstreamkafkafunctional.programming.sharedLib.model.TransactionReportData;
+import java.time.LocalDateTime;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,7 @@ public class AccountServiceImpl implements AccountService {
         .lastName("last name " + transactionReportData.getTranscationId())
         .acocuntNumber("ACC" + Math.round(Math.random()*1000000))
         .address(recipientAddress)
+        .lastUpdated(LocalDateTime.now())
         .build();
   }
 }
